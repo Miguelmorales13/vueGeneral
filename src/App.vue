@@ -1,32 +1,25 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="app" :dark="theme==='false'?false:true">
+    <router-view></router-view>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
+// @ is an alias to /src
+import { MsgSuccess, MsgInfo, MsgError, MsgWarning } from "@/plugins/toastr";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+@Component
+export default class App extends Vue {
+  theme='false'
+  created(){
+    MsgSuccess('hola',"si")
+    MsgInfo('b dgfvbd hb',"si")
+    MsgError('hjbhb ',"si")
+    MsgWarning('jkbhjbhb',"si")
+    console.log("si");
+    
   }
 }
-</style>
+
+</script>
