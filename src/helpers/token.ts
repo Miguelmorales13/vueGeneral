@@ -26,7 +26,7 @@ const isValidToken = (token: any): boolean => {
     return false;
 }
 // mange session
-export const login = (token: any, cb: Function, cbe: Function) => {
+export const LoginToken = (token: any, cb: Function, cbe: Function) => {
     if (isValidToken(token)) {
         setToken(token);
         cb();
@@ -34,14 +34,14 @@ export const login = (token: any, cb: Function, cbe: Function) => {
         cbe();
     }
 }
-export const isAuth = () => {
+export const IsAuth = () => {
     return getToken()
 }
-export const logout = () => {
+export const Logout = () => {
     removeToken();
 };
 // se obtiene el usuario
-export const getSession = (prop?: string): any => {
+export const GetSession = (prop?: string): any => {
 
     const payload = handlePayload(getToken());
     if (prop) {

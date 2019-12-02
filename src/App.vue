@@ -1,25 +1,32 @@
 <template>
-  <v-app id="app" :dark="theme==='false'?false:true">
+  <v-app id="app" >
     <router-view></router-view>
   </v-app>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
+import { Component, Prop, Vue, PropSync, Watch } from 'vue-property-decorator';
+import { State, Getter, Action, Mutation } from "vuex-class";
+import { TypesGlobales } from './store/globales/Globales.types';
 // @ is an alias to /src
-import { MsgSuccess, MsgInfo, MsgError, MsgWarning } from "@/plugins/toastr";
-
 @Component
 export default class App extends Vue {
-  theme='false'
-  created(){
-    MsgSuccess('hola',"si")
-    MsgInfo('b dgfvbd hb',"si")
-    MsgError('hjbhb ',"si")
-    MsgWarning('jkbhjbhb',"si")
-    console.log("si");
+  
+  mounted(){
+    this.getTheme()
+    console.log(this.theme);
+    // @ts-ignore
+    this.$vuetify.theme.dark = this.theme!='false'
     
   }
+
+  @State(`theme`,{namespace:'globales'}) theme:any
+  @Action(`globales/${TypesGlobales.actions.GET_THEME}`) getTheme:any
 }
 
 </script>
+
+
+<style lang="scss">
+
+</style>
